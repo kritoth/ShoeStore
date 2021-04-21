@@ -1,29 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-<LinearLayout
-    android:id="@+id/instructionLayout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".view.OnboardInstructionFragment">
-
-    <TextView
-        android:id="@+id/instruction_label"
+    <LinearLayout
+        android:id="@+id/instructionLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/label_instruction" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".view.OnboardInstructionFragment">
 
-    <TextView
-        android:id="@+id/instructions_detail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/instructions_details">
+        <TextView
+            android:id="@+id/instruction_label"
+            style="@style/Headline3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="@dimen/margin_vertical_basic"
+            android:layout_marginTop="@dimen/margin_horizontal_basic"
+            android:layout_marginEnd="@dimen/margin_vertical_basic"
+            android:layout_marginBottom="@dimen/gutter_horizontal_basic"
+            android:gravity="center_horizontal"
+            android:text="@string/label_instruction" />
 
-    </TextView>
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/margin_vertical_basic"
+            android:layout_marginEnd="@dimen/margin_vertical_basic"
+            android:layout_weight="1">
 
-</LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/instructions_detail"
+                    style="@style/Body"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/gutter_horizontal_basic"
+                    android:text="@string/instructions_details1" />
+
+                <TextView
+                    android:id="@+id/instructions_detail2"
+                    style="@style/Body"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/gutter_horizontal_basic"
+                    android:text="@string/instructions_details2" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <Button
+            android:id="@+id/btn_next_instruction"
+            style="@style/Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="@dimen/margin_vertical_basic"
+            android:layout_marginTop="@dimen/gutter_horizontal_basic"
+            android:layout_marginEnd="@dimen/margin_vertical_basic"
+            android:layout_marginBottom="@dimen/margin_horizontal_basic"
+            android:text="@string/btn_next" />
+
+    </LinearLayout>
 </layout>
