@@ -20,8 +20,8 @@ class OnboardWelcomeFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_onboard_welcome, container, false)
 
         binding.btnNext.setOnClickListener { findNavController()
-                .navigate(OnboardWelcomeFragmentDirections
-                        .actionOnboardWelcomeFragmentToOnboardInstructionFragment3())
+            .navigate(OnboardWelcomeFragmentDirections
+                .actionOnboardWelcomeFragmentToOnboardInstructionFragment3())
         }
 
         return binding.root
