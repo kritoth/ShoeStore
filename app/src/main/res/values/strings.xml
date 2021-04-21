@@ -13,4 +13,10 @@
     <string name="img_caption">Designed by vectorstock (Image #35084815 at VectorStock.com)</string>
     <string name="btn_next">Next</string>
     <string name="instructions_details2">You can exit by tapping the Logout menu in the Appbar</string>
+    <string name="item_description">This shoe is lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+    <string name="list_title">Best shoes on the planet</string>
+    <string name="item_name">Shoe One</string>
+    <string name="content_description_image_shoe">Image from a shoe</string>
+    <string name="content_description_image_logo">Shoe Store logo</string>
+
 </resources>
