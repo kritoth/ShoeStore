@@ -23,5 +23,14 @@
     <fragment
         android:id="@+id/onboardInstructionFragment"
         android:name="com.example.shoestore.view.OnboardInstructionFragment"
-        android:label="OnboardInstructionFragment" />
+        android:label="OnboardInstructionFragment" >
+        <action
+            android:id="@+id/action_onboardInstructionFragment_to_shoeListFragment"
+            app:destination="@id/shoeListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/shoeListFragment"
+        android:name="com.example.shoestore.view.ShoeListFragment"
+        android:label="ShoeListFragment"
+        tools:layout="@layout/fragment_shoe_list" />
 </navigation>
