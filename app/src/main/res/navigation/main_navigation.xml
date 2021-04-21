@@ -17,7 +17,7 @@
         android:name="com.example.shoestore.view.OnboardWelcomeFragment"
         android:label="OnboardWelcomeFragment" >
         <action
-            android:id="@+id/action_onboardWelcomeFragment_to_onboardInstructionFragment2"
+            android:id="@+id/action_onboardWelcomeFragment_to_onboardInstructionFragment3"
             app:destination="@id/onboardInstructionFragment" />
     </fragment>
     <fragment
