@@ -3,23 +3,69 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/welcomeLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         tools:context=".view.OnboardWelcomeFragment">
 
         <TextView
             android:id="@+id/tv_welcome"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/label_welcome" />
+            style="@style/Headline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_vertical_basic"
+            android:layout_marginTop="@dimen/margin_horizontal_basic"
+            android:layout_marginEnd="@dimen/margin_vertical_basic"
+            android:text="@string/label_welcome"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/logo"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginStart="@dimen/margin_vertical_basic"
+            android:layout_marginTop="@dimen/gutter_horizontal_basic"
+            android:layout_marginEnd="@dimen/margin_vertical_basic"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_vectorstock_35084815"
+            app:layout_constraintBottom_toTopOf="@+id/tv_caption"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/tv_caption"
+            style="@style/Caption"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginStart="@dimen/margin_vertical_basic"
+            android:layout_marginTop="@dimen/gutter_horizontal_basic"
+            android:layout_marginEnd="@dimen/margin_vertical_basic"
+            android:layout_marginBottom="@dimen/gutter_horizontal_basic"
+            android:gravity="center_horizontal"
+            android:text="@string/img_caption"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/logo" />
+
+        <Button
+            android:id="@+id/btn_next"
+            style="@style/Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_shopping_cart_24" />
-    </LinearLayout>
+            android:layout_marginStart="@dimen/margin_vertical_basic"
+            android:layout_marginEnd="@dimen/margin_vertical_basic"
+            android:layout_marginBottom="@dimen/margin_horizontal_basic"
+            android:text="@string/btn_next"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
