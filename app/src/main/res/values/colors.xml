@@ -5,4 +5,6 @@
     <color name="cyan_dark">#81b9bf</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="amber_500">#ffc107</color>
+    <color name="amber_500_dark">#c79100</color>
 </resources>
