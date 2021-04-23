@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ShoeItemFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/title_shoe_item"
+            style="@style/Headline5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_vertical_basic"
+            android:layout_marginTop="@dimen/margin_horizontal_basic"
+            android:layout_marginEnd="@dimen/margin_vertical_basic"
+            android:layout_marginBottom="@dimen/gutter_horizontal_basic"
+            android:text="@string/shoe_details_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/label_shoe_name"
+            style="@style/Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/shoe_name"
+            app:layout_constraintBottom_toTopOf="@+id/field_shoe_name"
+            app:layout_constraintStart_toStartOf="@+id/field_shoe_name"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <EditText
+            android:id="@+id/field_shoe_name"
+            style="@style/Subtitle1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/gutter_horizontal_basic"
+            android:layout_marginBottom="@dimen/gutter_horizontal_basic"
+            android:ems="10"
+            android:hint="@string/field_shoe_name"
+            android:inputType="textCapWords"
+            app:layout_constraintBottom_toTopOf="@+id/label_shoe_company"
+            app:layout_constraintStart_toStartOf="@+id/label_shoe_company"
+            app:layout_constraintTop_toBottomOf="@+id/label_shoe_name"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/label_shoe_company"
+            style="@style/Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/gutter_horizontal_basic"
+            android:text="@string/label_shoe_company"
+            app:layout_constraintBottom_toTopOf="@+id/field_shoe_company"
+            app:layout_constraintStart_toStartOf="@+id/field_shoe_company"
+            app:layout_constraintTop_toBottomOf="@+id/field_shoe_name"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <EditText
+            android:id="@+id/field_shoe_company"
+            style="@style/Subtitle1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/gutter_horizontal_basic"
+            android:layout_marginBottom="@dimen/gutter_horizontal_basic"
+            android:ems="10"
+            android:hint="@string/field_shoe_company"
+            android:inputType="textCapWords"
+            app:layout_constraintBottom_toTopOf="@+id/label_shoe_size"
+            app:layout_constraintStart_toStartOf="@+id/label_shoe_size"
+            app:layout_constraintTop_toBottomOf="@+id/label_shoe_company"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/label_shoe_size"
+            style="@style/Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/gutter_horizontal_basic"
+            android:text="@string/label_shoe_size"
+            app:layout_constraintBottom_toTopOf="@+id/field_shoe_size"
+            app:layout_constraintStart_toStartOf="@+id/field_shoe_size"
+            app:layout_constraintTop_toBottomOf="@+id/field_shoe_company"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <EditText
+            android:id="@+id/field_shoe_size"
+            style="@style/Subtitle1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/gutter_horizontal_basic"
+            android:layout_marginBottom="@dimen/gutter_horizontal_basic"
+            android:ems="10"
+            android:hint="@string/field_shoe_size"
+            android:inputType="number"
+            app:layout_constraintBottom_toTopOf="@+id/label_shoe_description"
+            app:layout_constraintStart_toStartOf="@+id/label_shoe_description"
+            app:layout_constraintTop_toBottomOf="@+id/label_shoe_size"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/label_shoe_description"
+            style="@style/Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/gutter_horizontal_basic"
+            android:text="@string/label_shoe_description"
+            app:layout_constraintBottom_toTopOf="@+id/field_shoe_description"
+            app:layout_constraintStart_toStartOf="@+id/field_shoe_description"
+            app:layout_constraintTop_toBottomOf="@+id/field_shoe_size"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <EditText
+            android:id="@+id/field_shoe_description"
+            style="@style/Subtitle1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/gutter_horizontal_basic"
+            android:layout_marginBottom="@dimen/gutter_horizontal_basic"
+            android:ems="10"
+            android:hint="@string/field_shoe_description"
+            android:inputType="textCapSentences"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/label_shoe_description"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <Button
+            android:id="@+id/btn_save"
+            style="@style/Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_vertical_basic"
+            android:layout_marginBottom="@dimen/margin_horizontal_basic"
+            android:text="@string/btn_save"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_cancel"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/btn_cancel"
+            style="@style/Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_vertical_basic"
+            android:text="@string/btn_cancel"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_save"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btn_save"
+            app:layout_constraintTop_toTopOf="@+id/btn_save" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

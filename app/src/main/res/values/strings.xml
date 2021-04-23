@@ -19,5 +19,16 @@
     <string name="content_description_image_shoe">Image from a shoe</string>
     <string name="content_description_image_logo">Shoe Store logo</string>
     <string name="add_shoe">Add shoe to the list</string>
+    <string name="shoe_details_title">Add a new shoe</string>
+    <string name="shoe_name">Name of the shoe</string>
+    <string name="field_shoe_name">Enter the name of the shoe</string>
+    <string name="label_shoe_company">Shoe\'s manufacturer</string>
+    <string name="field_shoe_company">Enter the company\'s name</string>
+    <string name="label_shoe_size">Size of the shoe</string>
+    <string name="field_shoe_size">Enter the size of the shoe</string>
+    <string name="label_shoe_description">Description</string>
+    <string name="field_shoe_description">Enter shoe\'s description</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_save">Save</string>
 
 </resources>
