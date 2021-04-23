@@ -18,5 +18,6 @@
     <string name="item_name">Shoe One</string>
     <string name="content_description_image_shoe">Image from a shoe</string>
     <string name="content_description_image_logo">Shoe Store logo</string>
+    <string name="add_shoe">Add shoe to the list</string>
 
 </resources>
