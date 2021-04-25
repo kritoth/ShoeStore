@@ -1,4 +1,4 @@
-package com.example.shoestore
+package com.example.shoestore.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.example.shoestore.R
+import com.example.shoestore.ShoeItemFragmentDirections
 import com.example.shoestore.databinding.FragmentShoeItemBinding
 import com.example.shoestore.models.Shoe
 import com.example.shoestore.viewmodel.ShoeViewModel
