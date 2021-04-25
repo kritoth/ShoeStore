@@ -6,26 +6,50 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.shoestore.databinding.FragmentShoeItemBinding
+import com.example.shoestore.models.Shoe
+import com.example.shoestore.viewmodel.ShoeViewModel
+import timber.log.Timber
 
 class ShoeItemFragment : Fragment() {
 
     private lateinit var binding: FragmentShoeItemBinding
+    //private lateinit var viewModel: ShoeViewModel
+    // Activity level viewModel: https://stackoverflow.com/questions/59952673/how-to-get-an-instance-of-viewmodel-in-activity-in-2020-21
+    private val viewModel: ShoeViewModel by viewModels(
+        ownerProducer = { requireParentFragment() }
+    )
 
     override fun onCreateView( inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_shoe_item, container, false)
+        Timber.plant(Timber.DebugTree())
+        //viewModel = ViewModelProvider(this).get(ShoeViewModel::class.java)
 
-        binding.btnSave.setOnClickListener { findNavController()
-            .navigate(ShoeItemFragmentDirections
-                .actionShoeItemFragmentToShoeListFragment())}
+        binding.btnSave.setOnClickListener {
+            saveShoe()
+            findNavController().navigate(ShoeItemFragmentDirections.actionShoeItemFragmentToShoeListFragment())
+        }
 
-        binding.btnCancel.setOnClickListener { findNavController()
-            .navigate(ShoeItemFragmentDirections
-                .actionShoeItemFragmentToShoeListFragment())}
+        binding.btnCancel.setOnClickListener {
+            findNavController().navigate(ShoeItemFragmentDirections.actionShoeItemFragmentToShoeListFragment())
+        }
 
         return binding.root
+    }
+
+    private fun saveShoe() {
+        // geting the texts enterd from EditTexts
+        val name: String = binding.fieldShoeName.text.toString()
+        val size: Double = binding.fieldShoeSize.text.toString().toDouble()
+        val company: String = binding.fieldShoeCompany.text.toString()
+        val descript: String = binding.fieldShoeDescription.text.toString()
+        // and save them into the List in ViewModel
+        viewModel.addShoe(Shoe(name, size, company, descript))
+        Timber.i("Shoe saved: $name, $size, $company, $descript")
     }
 
 

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.shoestore.models.Shoe
+import timber.log.Timber
 
 class ShoeViewModel: ViewModel() {
 
@@ -17,9 +18,13 @@ class ShoeViewModel: ViewModel() {
 
     init {
         _shoes.value = mutableListOf()
+        Timber.plant(Timber.DebugTree())
     }
 
+    /** Method for button press **/
     fun addShoe(shoe: Shoe){
         _shoes.value?.add(shoe)
+        _shoes.value = _shoes.value
+        Timber.i("$shoe added?= $_shoes.value.value")
     }
 }
