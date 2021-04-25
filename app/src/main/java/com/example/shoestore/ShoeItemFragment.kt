@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.shoestore.databinding.FragmentShoeItemBinding
 import com.example.shoestore.models.Shoe
@@ -42,14 +41,15 @@ class ShoeItemFragment : Fragment() {
     }
 
     private fun saveShoe() {
-        // geting the texts enterd from EditTexts
+        // getting the texts entered from EditTexts
         val name: String = binding.fieldShoeName.text.toString()
-        val size: Double = binding.fieldShoeSize.text.toString().toDouble()
+        val sizeString = binding.fieldShoeSize.text.toString()
+        val size: Double = if(sizeString.isEmpty()){0.0} else{ sizeString.toDouble()}
         val company: String = binding.fieldShoeCompany.text.toString()
-        val descript: String = binding.fieldShoeDescription.text.toString()
+        val description: String = binding.fieldShoeDescription.text.toString()
         // and save them into the List in ViewModel
-        viewModel.addShoe(Shoe(name, size, company, descript))
-        Timber.i("Shoe saved: $name, $size, $company, $descript")
+        viewModel.addShoe(Shoe(name, size, company, description))
+        Timber.i("Shoe saved: $name, $size, $company, $description")
     }
 
 
