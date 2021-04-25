@@ -19,15 +19,12 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var navController: NavController
-    private lateinit var viewModel: ShoeViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Timber.plant(Timber.DebugTree())
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-
-        viewModel = ViewModelProvider(this).get(ShoeViewModel::class.java)
 
         //There are multiple top-level destinations, from where there is no back navigation allowed, so no back button needed
         appBarConfiguration = AppBarConfiguration(
@@ -41,6 +38,6 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.findNavController()
 
         val toolBar = binding.toolbar
-        setupWithNavController(toolBar, navController, appBarConfiguration)
+        toolBar.setupWithNavController(navController, appBarConfiguration)
     }
 }
