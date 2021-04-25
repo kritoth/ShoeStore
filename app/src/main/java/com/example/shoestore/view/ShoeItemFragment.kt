@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.example.shoestore.R
@@ -29,6 +30,10 @@ class ShoeItemFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_shoe_item, container, false)
         Timber.plant(Timber.DebugTree())
         //viewModel = ViewModelProvider(this).get(ShoeViewModel::class.java)
+
+        // Set the viewmodel for databinding - this allows the bound layout access to all of the
+        // data in the VieWModel
+        binding.shoeViewModel = sharedViewModel
 
         binding.btnSave.setOnClickListener {
             saveShoe()
