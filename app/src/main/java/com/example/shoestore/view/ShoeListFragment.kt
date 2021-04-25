@@ -69,22 +69,25 @@ class ShoeListFragment : Fragment() {
 
             //Name TextView
             val nameTV: TextView = textView(HEADLINE)
-            nameTV.text = shoes.last().name
+            nameTV.text = if(item.name.isEmpty()) getString(R.string.error_no_name) else item.name
             //Company TextView
             val companyTV: TextView = textView(BODY)
-            companyTV.text = shoes.last().company
+            companyTV.text = if(item.company.isEmpty()) getString(R.string.error_no_company) else item.company
             //Size TextView
             val sizeTV: TextView = textView(BODY)
-            sizeTV.text = shoes.last().size.toString()
+            sizeTV.text = if(item.size==0.0) getString(R.string.error_no_size) else item.size.toString()
             //Description TextView
             val descriptionTV: TextView = textView(BODY)
-            descriptionTV.text = shoes.last().description
+            descriptionTV.text = if(item.description.isEmpty()) getString(R.string.error_no_description) else item.description
+            //Divider view
+            val dividerView: View = dividerView()
 
-            //add TextViews to itemLayout
+            //add Views to itemLayout
             shoeItemLayout.addView(nameTV)
             shoeItemLayout.addView(companyTV)
             shoeItemLayout.addView(sizeTV)
             shoeItemLayout.addView(descriptionTV)
+            shoeItemLayout.addView(dividerView)
 
             //add itemLayout to parentLayout
             parentLayout.addView(shoeItemLayout)
@@ -138,4 +141,16 @@ class ShoeListFragment : Fragment() {
         }
     }
 
+    /** Simple line to divide item layouts */
+    private fun dividerView(): View {
+        val dividerView = View(activity)
+        val params = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, 1)
+        params.bottomMargin = resources.getDimension(R.dimen.gutter_horizontal_basic).toInt()
+        params.marginStart = resources.getDimension(R.dimen.margin_vertical_basic).toInt()
+        params.marginEnd = resources.getDimension(R.dimen.margin_vertical_basic).toInt()
+        dividerView.layoutParams = params
+        dividerView.setBackgroundResource(R.color.cyan_dark)
+        return dividerView
+    }
 }
+
