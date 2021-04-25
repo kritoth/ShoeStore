@@ -35,5 +35,6 @@
     <string name="error_no_company">No manufacturer added!</string>
     <string name="error_no_size">No size added!</string>
     <string name="error_no_description">No description added!</string>
+    <string name="log_out">Log out</string>
 
 </resources>
