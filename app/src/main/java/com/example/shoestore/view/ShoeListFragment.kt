@@ -6,10 +6,11 @@ import androidx.fragment.app.Fragment
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navGraphViewModels
 import androidx.navigation.ui.NavigationUI
 import com.example.shoestore.R
 import com.example.shoestore.databinding.FragmentShoeListBinding
@@ -27,9 +28,9 @@ class ShoeListFragment : Fragment() {
 
     //private lateinit var viewModel: ShoeViewModel
     // Activity level viewModel: https://stackoverflow.com/questions/59952673/how-to-get-an-instance-of-viewmodel-in-activity-in-2020-21
-    private val viewModel: ShoeViewModel by viewModels(
-        ownerProducer = { requireParentFragment() }
-    )
+    //private val sharedViewModel: ShoeViewModel by activityViewModels()
+    //NavGraph scoped viewModel: https://stackoverflow.com/questions/56505455/scoping-a-viewmodel-to-multiple-fragments-not-activity-using-the-navigation-co
+    private val sharedViewModel: ShoeViewModel by navGraphViewModels(R.id.main_navigation)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -45,7 +46,7 @@ class ShoeListFragment : Fragment() {
             .navigate(ShoeListFragmentDirections
                 .actionShoeListFragmentToShoeItemFragment())}
 
-        viewModel.shoes.observe(viewLifecycleOwner, Observer { shoes ->
+        sharedViewModel.shoes.observe(viewLifecycleOwner, Observer { shoes ->
             if(!shoes.isNullOrEmpty()){
                 Timber.i("Adding shoes to the layout")
                 addItemView(shoes)
@@ -65,7 +66,6 @@ class ShoeListFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return NavigationUI.onNavDestinationSelected(item, requireView().findNavController()) || super.onOptionsItemSelected(item)
-
     }
 
     /** This adds a Shoe as an itemView, using LinearLayout, child to the LinearLayout parent */
