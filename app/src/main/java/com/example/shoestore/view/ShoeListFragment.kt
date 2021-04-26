@@ -9,11 +9,13 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import androidx.navigation.ui.NavigationUI
 import com.example.shoestore.R
 import com.example.shoestore.databinding.FragmentShoeListBinding
+import com.example.shoestore.databinding.ItemShoeBinding
 import com.example.shoestore.models.Shoe
 import com.example.shoestore.viewmodel.ShoeViewModel
 import timber.log.Timber
@@ -26,30 +28,38 @@ class ShoeListFragment : Fragment() {
 
     private lateinit var binding: FragmentShoeListBinding
 
+    // Fragment scoped viewModel initialized later in onCreateView
     //private lateinit var viewModel: ShoeViewModel
     // Activity level viewModel: https://stackoverflow.com/questions/59952673/how-to-get-an-instance-of-viewmodel-in-activity-in-2020-21
     private val sharedViewModel: ShoeViewModel by activityViewModels()
-    //NavGraph scoped viewModel: https://stackoverflow.com/questions/56505455/scoping-a-viewmodel-to-multiple-fragments-not-activity-using-the-navigation-co
+    // NavGraph scoped viewModel: https://stackoverflow.com/questions/56505455/scoping-a-viewmodel-to-multiple-fragments-not-activity-using-the-navigation-co
     //private val sharedViewModel: ShoeViewModel by navGraphViewModels(R.id.main_navigation)
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        Timber.plant(Timber.DebugTree())
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_shoe_list, container, false)
+        // Specify the current activity as the lifecycle owner.
+        binding.setLifecycleOwner(this)
+
+        Timber.plant(Timber.DebugTree())
 
         setHasOptionsMenu(true)
 
-        //viewModel = ViewModelProvider(this).get(ShoeViewModel::class.java)
-
-        binding.fabAddShoe.setOnClickListener { findNavController()
-            .navigate(ShoeListFragmentDirections
-                .actionShoeListFragmentToShoeItemFragment())}
+        binding.fabAddShoe.setOnClickListener {
+            findNavController()
+                .navigate(
+                    ShoeListFragmentDirections
+                        .actionShoeListFragmentToShoeItemFragment()
+                )
+        }
 
         sharedViewModel.shoes.observe(viewLifecycleOwner, Observer { shoes ->
-            if(!shoes.isNullOrEmpty()){
+            if (!shoes.isNullOrEmpty()) {
                 Timber.i("Adding shoes to the layout")
-                addItemView(shoes)
+                addShoe(shoes)
             } else {
                 Timber.i("List of Shoes are empty, adding placeholder view")
                 showEmptyList()
@@ -59,50 +69,27 @@ class ShoeListFragment : Fragment() {
         return binding.root
     }
 
+    private fun addShoe(shoes: MutableList<Shoe>) {
+        for (item in shoes) {
+            // inflate the item view
+            val shoeItemBinding = ItemShoeBinding.inflate(layoutInflater, null, false)
+            // reference the databinding variable
+            shoeItemBinding.shoe = item
+            // add the inflated item_shoe.xml to the parent first
+            binding.listOfShoes.addView(shoeItemBinding.root)
+        }
+    }
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return NavigationUI.onNavDestinationSelected(item, requireView().findNavController()) || super.onOptionsItemSelected(item)
-    }
-
-    /** This adds a Shoe as an itemView, using LinearLayout, child to the LinearLayout parent */
-    private fun addItemView(shoes: MutableList<Shoe>) {
-        val parentLayout: LinearLayout = binding.listOfShoes
-
-        for(item in shoes) {
-            // Itemlayout
-            val shoeItemLayout = LinearLayout(activity)
-            shoeItemLayout.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-            shoeItemLayout.orientation = LinearLayout.VERTICAL
-
-            //Name TextView
-            val nameTV: TextView = textView(HEADLINE)
-            nameTV.text = if(item.name.isEmpty()) getString(R.string.error_no_name) else item.name
-            //Company TextView
-            val companyTV: TextView = textView(BODY)
-            companyTV.text = if(item.company.isEmpty()) getString(R.string.error_no_company) else item.company
-            //Size TextView
-            val sizeTV: TextView = textView(BODY)
-            sizeTV.text = if(item.size==0.0) getString(R.string.error_no_size) else item.size.toString()
-            //Description TextView
-            val descriptionTV: TextView = textView(BODY)
-            descriptionTV.text = if(item.description.isEmpty()) getString(R.string.error_no_description) else item.description
-            //Divider view
-            val dividerView: View = dividerView()
-
-            //add Views to itemLayout
-            shoeItemLayout.addView(nameTV)
-            shoeItemLayout.addView(companyTV)
-            shoeItemLayout.addView(sizeTV)
-            shoeItemLayout.addView(descriptionTV)
-            shoeItemLayout.addView(dividerView)
-
-            //add itemLayout to parentLayout
-            parentLayout.addView(shoeItemLayout)
-        }
+        return NavigationUI.onNavDestinationSelected(
+            item,
+            requireView().findNavController()
+        ) || super.onOptionsItemSelected(item)
     }
 
     /** This shows a message that the list is empty */
@@ -118,12 +105,16 @@ class ShoeListFragment : Fragment() {
 
     /** Creates a styled TextView. */
     private fun textView(style: String): TextView {
-        val textView = when(style){
-            HEADLINE ->  headLineTextView();
+        val textView = when (style) {
+            HEADLINE -> headLineTextView();
             BODY -> bodyTextView()
             else -> throw IllegalArgumentException("No valid style added")
         }
-        val params = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+        val params = LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.WRAP_CONTENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT
+        )
+        params.topMargin = resources.getDimension(R.dimen.margin_horizontal_basic).toInt()
         params.bottomMargin = resources.getDimension(R.dimen.gutter_horizontal_basic).toInt()
         params.marginStart = resources.getDimension(R.dimen.margin_vertical_basic).toInt()
         params.marginEnd = resources.getDimension(R.dimen.margin_vertical_basic).toInt()
@@ -152,16 +143,5 @@ class ShoeListFragment : Fragment() {
         }
     }
 
-    /** Simple line to divide item layouts */
-    private fun dividerView(): View {
-        val dividerView = View(activity)
-        val params = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, 1)
-        params.bottomMargin = resources.getDimension(R.dimen.gutter_horizontal_basic).toInt()
-        params.marginStart = resources.getDimension(R.dimen.margin_vertical_basic).toInt()
-        params.marginEnd = resources.getDimension(R.dimen.margin_vertical_basic).toInt()
-        dividerView.layoutParams = params
-        dividerView.setBackgroundResource(R.color.cyan_dark)
-        return dividerView
-    }
 }
 
