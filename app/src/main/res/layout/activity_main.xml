@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:background="@color/cyan_100"
             android:theme="@style/ThemeOverlay.MaterialComponents.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.MaterialComponents.Dark" />
+            app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light" />
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/nav_host_fragment"

@@ -9,6 +9,8 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI.setupWithNavController
+import androidx.navigation.ui.navigateUp
+import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.shoestore.databinding.ActivityMainBinding
 import com.example.shoestore.viewmodel.ShoeViewModel
@@ -31,13 +33,14 @@ class MainActivity : AppCompatActivity() {
             setOf(
                 R.id.loginFragment,
                 R.id.onboardWelcomeFragment,
-                R.id.onboardInstructionFragment)
+                R.id.onboardInstructionFragment,
+                R.id.shoeListFragment)
         )
+
+        setSupportActionBar(binding.toolbar)
         // the cumbersome way to find the NavController, see: https://stackoverflow.com/questions/58703451/fragmentcontainerview-as-navhostfragment
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.findNavController()
-
-        val toolBar = binding.toolbar
-        toolBar.setupWithNavController(navController, appBarConfiguration)
+        setupActionBarWithNavController(navController, appBarConfiguration)
     }
 }
