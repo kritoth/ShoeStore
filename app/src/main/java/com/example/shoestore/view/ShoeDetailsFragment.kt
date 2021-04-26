@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.shoestore.R
 import com.example.shoestore.databinding.FragmentShoeDetailsBinding
@@ -17,45 +18,44 @@ import timber.log.Timber
 class ShoeDetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentShoeDetailsBinding
+
+    // Fragment scoped viewModel initialized later in onCreateView
     //private lateinit var viewModel: ShoeViewModel
     // Activity level viewModel: https://stackoverflow.com/questions/59952673/how-to-get-an-instance-of-viewmodel-in-activity-in-2020-21
     private val sharedViewModel: ShoeViewModel by activityViewModels()
-    //NavGraph scoped viewModel: https://stackoverflow.com/questions/56505455/scoping-a-viewmodel-to-multiple-fragments-not-activity-using-the-navigation-co
+    // NavGraph scoped viewModel: https://stackoverflow.com/questions/56505455/scoping-a-viewmodel-to-multiple-fragments-not-activity-using-the-navigation-co
     //private val sharedViewModel: ShoeViewModel by navGraphViewModels(R.id.main_navigation)
 
-    override fun onCreateView( inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_shoe_details, container, false)
+        binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_shoe_details, container, false)
+        // Specify the current activity as the lifecycle owner.
+        binding.setLifecycleOwner(this)
+
         Timber.plant(Timber.DebugTree())
-        //viewModel = ViewModelProvider(this).get(ShoeViewModel::class.java)
 
         // Set the viewmodel for databinding - this allows the bound layout access to all of the
         // data in the VieWModel
         binding.shoeViewModel = sharedViewModel
+        binding.shoe = Shoe("", 0.0, "", "")
 
-        binding.btnSave.setOnClickListener {
-            saveShoe()
-            findNavController().navigate(ShoeDetailsFragmentDirections.actionShoeItemFragmentToShoeListFragment())
-        }
-
-        binding.btnCancel.setOnClickListener {
-            findNavController().navigate(ShoeDetailsFragmentDirections.actionShoeItemFragmentToShoeListFragment())
-        }
+        // Sets up event listening to navigate when the saving/canceling is finished
+        sharedViewModel.eventFinish.observe(viewLifecycleOwner, Observer { isFinished ->
+            if (isFinished) {
+                binding.invalidateAll()
+                val action =
+                    ShoeDetailsFragmentDirections.actionShoeItemFragmentToShoeListFragment()
+                findNavController().navigate(action)
+                sharedViewModel.onFinished()
+            }
+        })
 
         return binding.root
     }
-
-    private fun saveShoe() {
-        // getting the texts entered from EditTexts
-        val name: String = binding.fieldShoeName.text.toString()
-        val sizeString = binding.fieldShoeSize.text.toString()
-        val size: Double = if(sizeString.isEmpty()){0.0} else{ sizeString.toDouble()}
-        val company: String = binding.fieldShoeCompany.text.toString()
-        val description: String = binding.fieldShoeDescription.text.toString()
-        // and save them into the List in ViewModel
-        sharedViewModel.addShoe(Shoe(name, size, company, description))
-        Timber.i("Shoe saved: $name, $size, $company, $description")
-    }
-
 
 }
