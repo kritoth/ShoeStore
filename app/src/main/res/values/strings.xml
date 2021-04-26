@@ -30,7 +30,7 @@
     <string name="field_shoe_description">Enter shoe\'s description</string>
     <string name="btn_cancel">Cancel</string>
     <string name="btn_save">Save</string>
-    <string name="error_no_shoes">\There are no shoes added yet. Add some shoes!</string>
+    <string name="error_no_shoes">There are no shoes added yet. Add some shoes!</string>
     <string name="error_no_name">No name added!</string>
     <string name="error_no_company">No manufacturer added!</string>
     <string name="error_no_size">No size added!</string>
