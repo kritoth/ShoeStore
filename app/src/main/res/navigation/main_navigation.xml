@@ -46,9 +46,9 @@
     </fragment>
     <fragment
         android:id="@+id/shoeItemFragment"
-        android:name="com.example.shoestore.view.ShoeItemFragment"
+        android:name="com.example.shoestore.view.ShoeDetailsFragment"
         android:label="Add A New Shoe"
-        tools:layout="@layout/fragment_shoe_item" >
+        tools:layout="@layout/fragment_shoe_details" >
         <!-- PopUpToInclusive: the backstack will be cleared by removing both this and the destination fragment https://developer.android.com/guide/navigation/navigation-navigate#pop -->
         <action
             android:id="@+id/action_shoeItemFragment_to_shoeListFragment"

@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
+    <!-- A simple hierarchy is enough for three child views -->
     <LinearLayout
         android:id="@+id/instructionLayout"
         android:layout_width="match_parent"
@@ -29,7 +29,7 @@
             android:layout_marginStart="@dimen/margin_vertical_basic"
             android:layout_marginEnd="@dimen/margin_vertical_basic"
             android:layout_weight="1">
-
+            <!-- A simple hierarchy is enough for two child views and scroll view needs a layout before views -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

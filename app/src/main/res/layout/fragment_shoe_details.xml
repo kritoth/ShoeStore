@@ -2,13 +2,16 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".view.ShoeItemFragment">
+    tools:context=".view.ShoeDetailsFragment">
 
     <data>
+
         <variable
             name="shoeViewModel"
             type="com.example.shoestore.viewmodel.ShoeViewModel" />
     </data>
+
+    <!-- A flat hierarchy is is more efficient for many child views placed all around relative to each other -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

@@ -7,18 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.navGraphViewModels
 import com.example.shoestore.R
-import com.example.shoestore.databinding.FragmentShoeItemBinding
+import com.example.shoestore.databinding.FragmentShoeDetailsBinding
 import com.example.shoestore.models.Shoe
 import com.example.shoestore.viewmodel.ShoeViewModel
 import timber.log.Timber
 
-class ShoeItemFragment : Fragment() {
+class ShoeDetailsFragment : Fragment() {
 
-    private lateinit var binding: FragmentShoeItemBinding
+    private lateinit var binding: FragmentShoeDetailsBinding
     //private lateinit var viewModel: ShoeViewModel
     // Activity level viewModel: https://stackoverflow.com/questions/59952673/how-to-get-an-instance-of-viewmodel-in-activity-in-2020-21
     private val sharedViewModel: ShoeViewModel by activityViewModels()
@@ -27,7 +25,7 @@ class ShoeItemFragment : Fragment() {
 
     override fun onCreateView( inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_shoe_item, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_shoe_details, container, false)
         Timber.plant(Timber.DebugTree())
         //viewModel = ViewModelProvider(this).get(ShoeViewModel::class.java)
 
@@ -37,11 +35,11 @@ class ShoeItemFragment : Fragment() {
 
         binding.btnSave.setOnClickListener {
             saveShoe()
-            findNavController().navigate(ShoeItemFragmentDirections.actionShoeItemFragmentToShoeListFragment())
+            findNavController().navigate(ShoeDetailsFragmentDirections.actionShoeItemFragmentToShoeListFragment())
         }
 
         binding.btnCancel.setOnClickListener {
-            findNavController().navigate(ShoeItemFragmentDirections.actionShoeItemFragmentToShoeListFragment())
+            findNavController().navigate(ShoeDetailsFragmentDirections.actionShoeItemFragmentToShoeListFragment())
         }
 
         return binding.root
