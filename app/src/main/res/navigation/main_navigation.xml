@@ -12,7 +12,11 @@
         <action
             android:id="@+id/action_loginFragment_to_onboardWelcomeFragment"
             app:destination="@id/onboardWelcomeFragment"
-            app:launchSingleTop="true" />
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:launchSingleTop="true"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit" />
     </fragment>
     <fragment
         android:id="@+id/onboardWelcomeFragment"
@@ -20,7 +24,9 @@
         android:label="Welcome On Board" >
         <action
             android:id="@+id/action_onboardWelcomeFragment_to_onboardInstructionFragment3"
-            app:destination="@id/onboardInstructionFragment" />
+            app:destination="@id/onboardInstructionFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/onboardInstructionFragment"
@@ -30,6 +36,10 @@
         <action
             android:id="@+id/action_onboardInstructionFragment_to_shoeListFragment"
             app:destination="@id/shoeListFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit"
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true" />
     </fragment>
@@ -42,7 +52,11 @@
         <action
             android:id="@+id/action_shoeListFragment_to_shoeItemFragment"
             app:destination="@id/shoeItemFragment"
-            app:launchSingleTop="true"/>
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:launchSingleTop="true"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit" />
     </fragment>
     <fragment
         android:id="@+id/shoeItemFragment"
@@ -53,7 +67,11 @@
         <action
             android:id="@+id/action_shoeItemFragment_to_shoeListFragment"
             app:destination="@id/shoeListFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit"
             app:popUpTo="@id/shoeListFragment"
-            app:popUpToInclusive="true"/>
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>
