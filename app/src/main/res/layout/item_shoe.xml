@@ -24,14 +24,14 @@
 
         <TextView
             android:id="@+id/label_shoe_name"
-            style="@style/Caption"
+            style="@style/Headline5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginStart="@dimen/margin_vertical_basic"
             android:layout_marginTop="@dimen/margin_horizontal_basic"
             android:layout_marginEnd="@dimen/margin_vertical_basic"
-            android:text='@{viewModel.hasName ? shoe.name : @string/error_no_name}' />
+            android:text='@{viewModel.hasName(shoe) ? shoe.name : @string/error_no_name}' />
 
         <TextView
             android:id="@+id/label_shoe_company"
@@ -42,17 +42,17 @@
             android:layout_marginStart="@dimen/margin_vertical_basic"
             android:layout_marginTop="@dimen/gutter_horizontal_basic"
             android:layout_marginEnd="@dimen/margin_vertical_basic"
-            android:text='@{viewModel.hasCompany ? shoe.company : @string/error_no_company}' />
+            android:text='@{viewModel.hasCompany(shoe) ? shoe.company : @string/error_no_company}' />
 
         <TextView
             android:id="@+id/label_shoe_size"
-            style="@style/Caption"
+            style="@style/Body"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_vertical_basic"
             android:layout_marginTop="@dimen/gutter_horizontal_basic"
             android:layout_marginEnd="@dimen/margin_vertical_basic"
-            android:text='@{viewModel.hasSize ? Double.toString(shoe.size) : @string/error_no_size}' />
+            android:text='@{viewModel.hasSize(shoe) ? Double.toString(shoe.size) : @string/error_no_size}' />
 
         <TextView
             android:id="@+id/label_shoe_description"
@@ -69,7 +69,7 @@
             android:layout_height="1dp"
             android:layout_marginStart="@dimen/margin_vertical_basic"
             android:layout_marginEnd="@dimen/margin_vertical_basic"
-            android:layout_marginBottom="@dimen/gutter_horizontal_basic"
+            android:layout_marginTop="@dimen/gutter_horizontal_basic"
             android:background="@color/cyan_dark" />
 
     </LinearLayout>

@@ -24,15 +24,15 @@ class ShoeViewModel : ViewModel() {
     }
 
     /** Method for Save button press: saves the {@param Shoe} and triggers finish event **/
-    fun addShoe(shoe: Shoe?){
-        if(shoe != null) _shoes.value?.add(shoe)
+    fun addShoe(shoe: Shoe?) {
+        if (shoe != null) _shoes.value?.add(shoe)
         _shoes.value = _shoes.value
         _eventFinish.value = true
-        Timber.i("Num of records after adding: ${_shoes.value!!.size}")
+        //Timber.i("Num of records after adding: ${_shoes.value!!.size}")
     }
 
     /** Method for Cancel button press: not saving anything only triggers finish event **/
-    fun onCancel(){
+    fun onCancel() {
         _eventFinish.value = true
     }
 
@@ -40,12 +40,15 @@ class ShoeViewModel : ViewModel() {
     fun hasName(shoe: Shoe?): Boolean {
         return !shoe?.name.isNullOrBlank()
     }
+
     fun hasCompany(shoe: Shoe?): Boolean {
         return !shoe?.company.isNullOrBlank()
     }
+
     fun hasSize(shoe: Shoe?): Boolean {
         return shoe?.size != 0.0
     }
+
     fun hasDescription(shoe: Shoe?): Boolean {
         return !shoe?.description.isNullOrBlank()
     }
@@ -54,7 +57,6 @@ class ShoeViewModel : ViewModel() {
     fun onFinished() {
         _eventFinish.value = false
     }
-
 
     override fun onCleared() {
         super.onCleared()

@@ -73,7 +73,8 @@ class ShoeListFragment : Fragment() {
         for (item in shoes) {
             // inflate the item view
             val shoeItemBinding = ItemShoeBinding.inflate(layoutInflater, null, false)
-            // reference the databinding variable
+            // reference the data binding variables
+            shoeItemBinding.viewModel = sharedViewModel
             shoeItemBinding.shoe = item
             // add the inflated item_shoe.xml to the parent first
             binding.listOfShoes.addView(shoeItemBinding.root)
